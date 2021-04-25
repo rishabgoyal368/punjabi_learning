@@ -50,7 +50,7 @@ class KhaniController extends Controller
                 'name' =>  'required',
                 'image' => $request['id'] ? 'nullable' : 'required',
                 'khani' => 'required',
-                'audio' => $request['id'] ? 'nullable' : 'required',
+                'audio' => 'nullable',
 
             ]);
             if ($request->image) {
@@ -59,7 +59,14 @@ class KhaniController extends Controller
                 $request['file'] = $fileName;
             } else {
                 $fileName = Khani::where('id', $request->id)->first();
+if($fileName)
+{
                 $request['file'] = $fileName->getAttributes()['image'];
+}
+else
+{
+	$request['file']  = '';
+}
             }
 
             if ($request->audio) {
@@ -68,12 +75,21 @@ class KhaniController extends Controller
                 $request['audio_file'] = $fileName;
             } else {
                 $fileName = Khani::where('id', $request->id)->first();
-                $request['audio_file'] = $fileName->getAttributes()['audio'];
+if($fileName)
+{
+                //$request['audio_file'] = $fileName->getAttributes()['image'];
+$request['audio_file'] = $fileName->getAttributes()['audio'];
+}
+else
+{
+        $request['audio_file']  = '';
+}
+               // $request['audio_file'] = $fileName->getAttributes()['audio'];
             }
             // return $request;
             $user =  Khani::addEdit($request);
             if ($request['id']) {
-                $label = 'Updated';
+              $label = 'Updated';
             } else {
                 $label = 'Add';
             }
