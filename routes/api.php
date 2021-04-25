@@ -30,5 +30,5 @@ Route::group(['middleware' => 'token_auth'], function () {
     // Content Controller
     // Route::get('getGurumukhi', 'PunjabiController@getGurumukhi');
 
-    Route::post('manage-content', 'PunjabiController@getContent');
 });
+Route::any('manage-content', 'PunjabiController@getContent');

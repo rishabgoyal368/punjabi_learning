@@ -48,29 +48,31 @@ class ContentController extends Controller
 
             $this->validate($request, [
                 'name' =>  'required',
-                'image' => $request['id'] ? 'nullable' : 'required',
                 'content' => 'required',
                 'order' => 'required|numeric',
-                'audio' => $request['id'] ? 'nullable' : 'required',
+                'audio' => 'nullable',
+                'image' => 'nullable',
 
             ]);
             if ($request->image) {
                 $fileName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('uploads'), $fileName);
                 $request['file'] = $fileName;
-            } else {
-                $fileName = Content::where('id', $request->id)->first();
-                $request['file'] = $fileName->getOriginal('image');
-            }
+            } 
+            // else {
+            //     $fileName = Content::where('id', $request->id)->first();
+            //     $request['file'] = $fileName->getOriginal('image');
+            // }
 
             if ($request->audio) {
                 $fileName = time() . '.' . $request->audio->extension();
                 $request->audio->move(public_path('uploads'), $fileName);
                 $request['audio_file'] = $fileName;
-            } else {
-                $fileName = Content::where('id', $request->id)->value('audio');
-                $request['audio_file'] = $fileName;
-            }
+            } 
+            // else {
+            //     $fileName = Content::where('id', $request->id)->value('audio');
+            //     $request['audio_file'] = $fileName;
+            // }
             
             $user =  Content::addEdit($request);
             if ($request['id']) {

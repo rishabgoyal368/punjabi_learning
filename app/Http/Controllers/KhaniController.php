@@ -48,8 +48,8 @@ class KhaniController extends Controller
 
             $this->validate($request, [
                 'name' =>  'required',
-                'image' => $request['id'] ? 'nullable' : 'required',
                 'khani' => 'required',
+                'image' => 'nullable',
                 'audio' => 'nullable',
 
             ]);
@@ -57,39 +57,25 @@ class KhaniController extends Controller
                 $fileName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('uploads'), $fileName);
                 $request['file'] = $fileName;
-            } else {
-                $fileName = Khani::where('id', $request->id)->first();
-if($fileName)
-{
-                $request['file'] = $fileName->getAttributes()['image'];
-}
-else
-{
-	$request['file']  = '';
-}
-            }
+            } 
+            // else {
+            //     $fileName = Khani::where('id', $request->id)->first();
+            //     $request['file'] = $fileName->getAttributes()['image'];
+            // }
 
             if ($request->audio) {
                 $fileName = time() . '.' . $request->audio->extension();
                 $request->audio->move(public_path('uploads'), $fileName);
                 $request['audio_file'] = $fileName;
-            } else {
-                $fileName = Khani::where('id', $request->id)->first();
-if($fileName)
-{
-                //$request['audio_file'] = $fileName->getAttributes()['image'];
-$request['audio_file'] = $fileName->getAttributes()['audio'];
-}
-else
-{
-        $request['audio_file']  = '';
-}
-               // $request['audio_file'] = $fileName->getAttributes()['audio'];
             }
+            //  else {
+            //     $fileName = Khani::where('id', $request->id)->first();
+            //     $request['audio_file'] = $fileName->getAttributes()['audio'];
+            // }
             // return $request;
             $user =  Khani::addEdit($request);
             if ($request['id']) {
-              $label = 'Updated';
+                $label = 'Updated';
             } else {
                 $label = 'Add';
             }

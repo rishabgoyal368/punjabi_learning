@@ -48,19 +48,19 @@ class LipiController extends Controller
 
             $this->validate($request, [
                 'name' =>  'required',
-                'image' => $request['id'] ? 'nullable' : 'required',
                 'description' => 'required',
+                'image'=>'nullable',
                 // 'order' => 'required|numeric',
             ]);
             if ($request->image) {
                 $fileName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('uploads'), $fileName);
                 $request['file'] = $fileName;
-            } else {
-                $fileName = Lipi::where('id', $request->id)->first();
-                // return $fileName->getAttributes()['image'];
-                $request['file'] = $fileName->getAttributes()['image'];
-            }
+            } 
+            // else {
+            //     $fileName = Lipi::where('id', $request->id)->first();
+            //     $request['file'] = $fileName->getAttributes()['image'];
+            // }
             // return $request;
             $user =  Lipi::addEdit($request);
             if ($request['id']) {

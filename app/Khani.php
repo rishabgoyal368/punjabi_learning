@@ -16,15 +16,15 @@ class Khani extends Model
         'name', 'image', 'khani','audio'
     ];
     
-    public function getImageAttribute($value)
-    {
-        return env('APP_URL') .'uploads/'.$value;
-    }
+    // public function getImageAttribute($value)
+    // {
+    //     return env('APP_URL') .'uploads/'.$value;
+    // }
 
-    public function getAudioAttribute($value)
-    {
-        return env('APP_URL') .'uploads/'.$value;
-    }
+    // public function getAudioAttribute($value)
+    // {
+    //     return env('APP_URL') .'uploads/'.$value;
+    // }
 
     public static function addEdit($data)
     {

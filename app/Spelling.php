@@ -27,13 +27,13 @@ class Spelling extends Model
             ]
         );
     }
-    public function getImageAttribute($value)
-    {
-        return env('APP_URL') .'uploads/'.$value;
-    }
+    // public function getImageAttribute($value)
+    // {
+    //     return env('APP_URL') .'uploads/'.$value;
+    // }
 
-    public function getAudioAttribute($value)
-    {
-        return env('APP_URL') .'uploads/'.$value;
-    }
+    // public function getAudioAttribute($value)
+    // {
+    //     return env('APP_URL') .'uploads/'.$value;
+    // }
 }

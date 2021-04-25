@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateContentTable extends Migration
+class UpdateLipi1Table extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class UpdateContentTable extends Migration
      */
     public function up()
     {
-        Schema::table('content', function (Blueprint $table) {
-            $table->string('audio')->nullable()->change();
-            $table->string('image')->nullable()->change();
+        Schema::table('lipi', function (Blueprint $table) {
+           
+            $table->longText('name')->change();
         });
     }
 
@@ -26,8 +26,8 @@ class UpdateContentTable extends Migration
      */
     public function down()
     {
-        Schema::table('content', function (Blueprint $table) {
-            //
+        Schema::table('lipi', function (Blueprint $table) {
+            $table->longText('name')->change();
         });
     }
 }

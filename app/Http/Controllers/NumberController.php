@@ -48,28 +48,30 @@ class NumberController extends Controller
 
             $this->validate($request, [
                 'title' => 'required',
-                'image' => $request['id'] ? 'nullable' : 'required',
                 'description' => 'required',
-                'audio' => $request['id'] ? 'nullable' : 'required',
+                'audio' => 'nullable',
+                'image' => 'nullable',
 
             ]);
             if ($request->image) {
                 $fileName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('uploads'), $fileName);
                 $request['file'] = $fileName;
-            } else {
-                $fileName = Number::where('id', $request->id)->first();
-                $request['file'] = $fileName->getAttributes()['image'];
-            }
+            } 
+            // else {
+            //     $fileName = Number::where('id', $request->id)->first();
+            //     $request['file'] = $fileName->getAttributes()['image'];
+            // }
 
             if ($request->audio) {
                 $fileName = time() . '.' . $request->audio->extension();
                 $request->audio->move(public_path('uploads'), $fileName);
                 $request['audio_file'] = $fileName;
-            } else {
-                $fileName = Number::where('id', $request->id)->first();
-                $request['audio_file'] = $fileName->getAttributes()['audio'];
-            }
+            } 
+            // else {
+            //     $fileName = Number::where('id', $request->id)->first();
+            //     $request['audio_file'] = $fileName->getAttributes()['audio'];
+            // }
             // return $request;
             $user =  Number::addEdit($request);
             if ($request['id']) {

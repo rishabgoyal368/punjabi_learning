@@ -30,9 +30,9 @@ class Lipi extends Model
         );
     }
 
-    public function getImageAttribute($value)
-    {
-        return env('APP_URL') .'uploads/'.$value;
-    }
+    // public function getImageAttribute($value)
+    // {
+    //     return env('APP_URL') .'uploads/'.$value;
+    // }
 
 }
