@@ -63,4 +63,5 @@ Route::any('/updatepassword','AdminController@updatepassword');
 Route::any('/app-setting','AdminController@appSetting');
 
 
-
+Route::any('manage-question','QuestionController@show');
+Route::any('manage-question/add','QuestionController@add_question');
