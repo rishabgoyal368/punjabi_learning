@@ -126,3 +126,27 @@
             x.type = "password";
         }
     }
+
+
+    
+
+        $("#qestion_addPage").validate({
+            rules: {
+                option_1: {
+                    required: true,
+                },
+                option_2: {
+                    required: true,
+                },
+                option_3: {
+                    required: true,
+                },
+                option_4: {
+                    required: true,
+                },
+                correct_option: {
+                    required: true,
+                },
+
+            },
+        });

@@ -2216,3 +2216,7 @@
 .menu_active span{
     color: white;
 }
+
+.error{
+    color: red;
+}

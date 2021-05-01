@@ -63,5 +63,15 @@ Route::any('/updatepassword','AdminController@updatepassword');
 Route::any('/app-setting','AdminController@appSetting');
 
 
-Route::any('manage-question','QuestionController@show');
-Route::any('manage-question/add','QuestionController@add_question');
+Route::any('/manage-question','QuestionController@show');
+Route::any('/manage-question/add','QuestionController@add_question');
+Route::any('/manage-question/edit/{id}','QuestionController@edit_question');
+Route::delete('/manage-question/delete', 'QuestionController@delete');
+
+
+
+//Question Image
+define('QuestionImage','/uploads/Question');
+define('QuestionImagePath',asset('/uploads/Question'));
+
+define('DefaultImgPath',asset('/assets/img/default.png'));

@@ -89,3 +89,59 @@ $(document).ready(function(e) {
     })
 
 });
+$(document).ready(function(){
+        function readURL(input)
+        {
+            if(input.files && input.files[0])
+            {
+                var reader = new FileReader();
+                reader.onload = function(e)
+                {
+                    $('#old_image').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $('#img_upload').change(function(){
+
+            var img_name = $(this).val();
+
+            if(img_name != '' && img_name != null)
+            {
+                var img_arr = img_name.split('.');
+
+                var ext = img_arr.pop();
+                ext = ext.toLowerCase();
+                // alert(ext); return false;
+
+                if(ext == 'jpeg' || ext == 'jpg' || ext == 'png')
+                {
+                    input = document.getElementById('img_upload');
+
+                    readURL(this);
+                }
+            } else{
+
+                $(this).val('');
+                alert('Please select an image of .jpeg, .jpg, .png file format.');
+            }
+
+        });
+
+    });
+
+    $(document).ready(function() {
+        $('.faq').hide();
+        $('.view_ans').on('click',function(){
+            var ths =$(this);
+            var text =$(this).text(); 
+            if(text == 'Show Answer'){
+                ths.text('Hide Answer');
+                ths.closest('.faq_container').find('.faq').slideDown('slow');
+            }else{
+                ths.closest('.faq_container').find('.faq').slideUp('slow');
+                ths.text('Show Answer');
+            }
+        })
+    });
