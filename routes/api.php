@@ -20,6 +20,8 @@ Route::post('app-setting', 'JwtAuthController@setting');
 Route::post('login', 'JwtAuthController@login');
 Route::post('register', 'JwtAuthController@register');
 
+Route::post('/mcq-question', 'Api\McqController@index');
+
 Route::group(['middleware' => 'token_auth'], function () {
 
     // User Controller
