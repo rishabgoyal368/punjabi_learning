@@ -28,6 +28,10 @@ Route::group(['middleware' => 'token_auth'], function () {
     Route::post('logout', 'JwtAuthController@logout');
     Route::get('user-info', 'JwtAuthController@getUser');
     Route::post('update-profile', 'JwtAuthController@updateProfile');
+    
+	//user -result
+    Route::post('user-result', 'Api\McqController@submit_result');
+    Route::post('user-report', 'Api\McqController@view_result');
 
     // Content Controller
     // Route::get('getGurumukhi', 'PunjabiController@getGurumukhi');

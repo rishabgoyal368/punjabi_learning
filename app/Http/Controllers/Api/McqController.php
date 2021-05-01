@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 use Validator;
+use JWTAuth;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Question, App\Report;
+use App\Question, App\Report, App\UserQuestion;
+use auth;
 
 class McqController extends Controller
 {
@@ -28,10 +30,10 @@ class McqController extends Controller
     public function submit_result(Request $request){
         $data = $request->all();
          
-        $user =   auth()->userOrFail();
-        // print_r($data);die;
+        $user =  JWTAuth::parseToken()->authenticate();      
         try{
             $total_correct_quesiton = 0;
+            // print_r($data);die();
             foreach ($data as $key => $result_data) {
                 foreach ($result_data['question'] as $key => $value) {
                     if($value['correct'] == 'true'){
@@ -65,7 +67,7 @@ class McqController extends Controller
     }
 
     public function view_result(){
-        $user =   auth()->userOrFail();
+        $user =  JWTAuth::parseToken()->authenticate();   
         try{
             $view_result    = Report::where('user_id',$user->id)->orderBy('id','desc')->first();
             $response['code']       = 200;
