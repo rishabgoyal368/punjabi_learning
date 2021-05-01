@@ -124,3 +124,11 @@ Breadcrumbs::for('app-setting', function ($trail) {
     $trail->parent('home');
     $trail->push('App Setting', url('app-setting'));
 });
+
+
+// Home > Questions
+Breadcrumbs::for('manage-question', function ($trail) {
+    $trail->parent('home');
+    $trail->push('question', url('manage-question'));
+});
+
