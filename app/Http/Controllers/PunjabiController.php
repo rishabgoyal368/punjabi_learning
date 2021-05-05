@@ -35,7 +35,7 @@ class PunjabiController extends Controller
                 $content = Content::orderBy('order', 'ASC')->get();
                 break;
             case 'Lipi':
-                $content = Lipi::latest()->get();
+                $content = Lipi::orderBy('order', 'ASC')->get();
                 break;
             case 'Khani':
                 $content = Khani::latest()->get();
@@ -47,17 +47,17 @@ class PunjabiController extends Controller
                 $content = Number::latest()->get();
                 break;
             default:
-                $content = Content::latest()->get();
+                $content = Content::orderBy('order', 'ASC')->get();
                 break;
         }
         foreach ($content  as $key => $value) {
             $image =  $value->getOriginal('image');
-            $image = str_replace('http://punjabi.uplosse.com/uploads/', '', trim($image));
+            $image = str_replace(env('APP_URL'), '', trim($image));
             $image = env('APP_URL') .'/uploads/'. trim($image);
             $content[$key]['image'] = $image;
 
             $audio =  $value->getOriginal('audio');
-            $audio = str_replace('http://punjabi.uplosse.com/uploads/', '', trim($audio));
+            $audio = str_replace(env('APP_URL'), '', trim($audio));
             $audio = env('APP_URL') .'/uploads/'. trim($audio);
             $content[$key]['audio'] = $audio;
             
