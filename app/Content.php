@@ -29,9 +29,12 @@ class Content extends Model
     //     return env('APP_URL') .'uploads/'.trim($value);
     // }
 
-    // public function getAudioAttribute($value)
+    // public function getOrderAttribute($value)
     // {
-    //     return env('APP_URL') .'uploads/'.trim($value);
+    //     if($value)
+    //     {
+    //         return (int) $value;
+    //     }
     // }
 
     /**

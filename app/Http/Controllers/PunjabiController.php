@@ -48,6 +48,10 @@ class PunjabiController extends Controller
                 break;
             default:
                 $content = Content::orderBy('order', 'ASC')->get();
+                // foreach ($content as $key => $value) {
+                //    $value->order = (int) $value['order'];
+                //    $value->save();
+                // }
                 break;
         }
         foreach ($content  as $key => $value) {

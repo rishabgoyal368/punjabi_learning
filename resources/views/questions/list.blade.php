@@ -100,7 +100,7 @@
                                                 <div class="edit-delete-btn-setting">
                                                     <a href="{{ url('/manage-question/edit/'.$question['id'])}}" title="Edit Question"><i class="fa fa-edit"></i></a>
                                                     <a class="trash-icon common_delete" href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target=".common_delete_modal" data-url="{{url('/manage-question/delete')}}"  data-id="{{$question['id']}}">
-                                                    <span class="lnr lnr-trash" data-toggle="tooltip" title="Delete">
+                                                    <span class="lnr lnr-trash" data-toggle="tooltip" title="Delete"></span></a>
                                                 </div>
                                             
                                         </div>
